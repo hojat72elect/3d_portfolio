@@ -1,4 +1,3 @@
-import {BallCanvas, StarsCanvas} from './canvas';
 import About from "./About";
 import Tech from "./Tech";
 import Experience from "./Experience";
@@ -13,6 +12,4 @@ export {
     Works,
     Feedbacks,
     Contact,
-    BallCanvas,
-    StarsCanvas
 };
