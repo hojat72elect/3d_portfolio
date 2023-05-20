@@ -6,6 +6,7 @@ import {styles} from "../styles";
 import {slideIn} from "../utils/motion";
 import EarthCanvas from "./canvas/Earth.jsx";
 import SectionWrapper from "../hoc/SectionWrapper.jsx";
+import {PUBLIC_KEY, SERVICE_ID, TEMPLATE_ID} from "../.secrets/ApiKeys.js";
 
 const Contact = () => {
     const formRef = useRef();
@@ -18,8 +19,7 @@ const Contact = () => {
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
-        const {target} = e;
-        const {name, value} = target;
+        const {name, value} = e.target;
 
         setForm({
             ...form,
@@ -33,21 +33,21 @@ const Contact = () => {
 
         emailjs
             .send(
-                import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-                import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+                SERVICE_ID,
+                TEMPLATE_ID,
                 {
                     from_name: form.name,
-                    to_name: "JavaScript Mastery",
+                    to_name: "Hojat Ghasemi",
                     from_email: form.email,
-                    to_email: "sujata@jsmastery.pro",
+                    to_email: "hojat72elect@gmail.com",
                     message: form.message,
                 },
-                import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+                PUBLIC_KEY
             )
             .then(
                 () => {
                     setLoading(false);
-                    alert("Thank you. I will get back to you as soon as possible.");
+                    alert("Thank you. Hojat will get back to you as soon as possible.");
 
                     setForm({
                         name: "",
