@@ -5,9 +5,19 @@ import {styles} from "../styles";
 import {navLinks} from "../constants";
 import {logo, menu, close} from "../assets";
 
+/**
+ *
+ * It contains the title of the website and a few buttons for scrolling to
+ * various parts of the web page.
+ *
+ * When we're at the top of the page, it has a transparent background; otherwise a solid background.
+ *
+ * This nav bar has 2 different appearances according to the size of the screen; and the state "isInSmallScreenMode" simply denotes the fact that whether it's in small mode or not.
+ *
+ */
 const Navbar = () => {
     const [active, setActive] = useState("");
-    const [toggle, setToggle] = useState(false);
+    const [isInSmallScreenMode, setIsInSmallScreenMode] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -65,15 +75,15 @@ const Navbar = () => {
 
                 <div className='sm:hidden flex flex-1 justify-end items-center'>
                     <img
-                        src={toggle ? close : menu}
+                        src={isInSmallScreenMode ? close : menu}
                         alt='menu'
                         className='w-[28px] h-[28px] object-contain'
-                        onClick={() => setToggle(!toggle)}
+                        onClick={() => setIsInSmallScreenMode(!isInSmallScreenMode)}
                     />
 
                     <div
                         className={`${
-                            !toggle ? "hidden" : "flex"
+                            !isInSmallScreenMode ? "hidden" : "flex"
                         } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
                     >
                         <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
@@ -84,7 +94,7 @@ const Navbar = () => {
                                         active === nav.title ? "text-white" : "text-secondary"
                                     }`}
                                     onClick={() => {
-                                        setToggle(!toggle);
+                                        setIsInSmallScreenMode(!isInSmallScreenMode);
                                         setActive(nav.title);
                                     }}
                                 >
